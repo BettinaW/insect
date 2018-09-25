@@ -1,0 +1,1 @@
+{"action":{"sessionid":"c4d930e9-279b-4ce4-afad-2e0a8f3b9eb2","requestid":"c4d930e9-279b-4ce4-afad-2e0a8f3b9eb2","collphirkey":0,"collphirmessage":null},"data":{"collPhirCoreVersion":"2.15.000.08","jsonServerVersion":"2.15.000.08 A","mainApplication":"ZwkMainApplication","jsonServerFixpacks":"","mandant":"DekaBank"},"notifications":null}
