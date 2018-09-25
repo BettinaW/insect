@@ -1,0 +1,146 @@
+Basic Git commands: https://confluence.atlassian.com/bitbucketserver048/git-resources/basic-git-commands?utm_campaign=in-app-help&utm_medium=in-app-help&utm_source=stash
+
+Der Git-Lifecycle
+
+   Es gibt 4 verschiedene Status, die eine Datei annehmen kann.
+   
+     - untracked
+     - unmodified
+     - modified
+     - staged
+     
+                  --git add-->                   --edit file-->              --git add-->  
+    [untracked]                  [unmodified]                  [modified]                  [staged]
+                    <-git rm--                  <----------------------------git commit---
+                                                                          <-git reset HEAD-
+
+                 
+Befehle 
+
+* Anlegen eines Repositories      
+ 
+    > git init
+      -> Repository initialisieren in bestehendem Ordner
+      -> legt im Ordner einen Unterordner .git an
+
+    > git add file(s)
+      -> Dateien zum Repository hinzufügen
+
+    > git clone git://github.com/schacon/git.git
+      -> Entferntes Repository herunterladen   
+
+* Abfragen des Repository-Status
+  
+    > git status
+      -> gibt den Status des Ordners aus, in dem man sich befindet
+        
+ * Anzeige (detailliert) der Änderungen an Dateien  
+    
+    > git diff [file]
+      -> Anzeige der Änderung an [file] seit dem letzten stage/commit
+    
+    > git diff --staged
+      -> Anzeige des Unterschieds der staged-Datei gegenüber dem Repository
+    
+ * Schreiben in das Repository
+   
+    Allgemein: Commiten bedeutet, alle Dateien der staging area in das Repository zu übernehmen.
+  
+    > git commit
+      -> Öffnet den Editor zur Eingabe des Commit-Kommentars. Danach wird committed.
+      
+    > git commit -m MESSAGE
+      -> Man kann den Commit-Kommentar auch Inline angeben.
+      
+    > git commit -a -m MESSAGE
+      -> mit "-a" kann man die staging area überspringen und direkt alles commiten, was getrackt wird.
+         d.h. direkt von [modified] anstatt von [staged] commiten;
+              man überspringt sozusagen das > git add.
+              
+    > git commit --amend
+      
+              
+ * Dateien löschen
+  
+    Eine Datei aus GIT zu entfernen bedeutet, diese aus der staging area zu entfernen und zu committen
+    
+    > git rm [file]
+      -> entfernt die Datei [file] aus der staging area, d.h. commit löscht die Datei wirklich
+      
+    > rm [file]
+      -> löscht die Datei aus dem filesystem, d.h. die Datei ist nur geändert.
+         => um diese Datei zu löschen, muss sie erst mit > git rm als gelöscht in die staging area überführt und dann commited werden.
+         
+ * Dateien unstagen
+  
+    Eine Datei wieder aus der staging area zu entfernen (ohne zu committen):
+    
+    > git reset HEAD [file]
+      -> entfernt die zuletzt in die staging area überführte Version der Datei aus der staging area.
+      
+ * Datei mit Repository-Stand überschreiben
+
+    > git checkout -- FILE
+      -> Überschreibt eine [modified] Datei mit aktuellen Repo-Stand.
+      ACHTUNG: wirkt sich nur auf unstaged files aus. 
+               => keine Auswirkungen auf staging area.
+      
+ * Commit-Historie anzeigen
+  
+    > git log
+      -> Listet die letzten Commits mit diversen Details auf
+         z.B. SHA-1 checksum, Name und E-Mail des Autors, Commit message
+         
+    > git log -p -NUMBER
+      -> NUMBER steuert die Anzahl der angezeigten Commits
+      -> Parameter -p steuert, dass zu jedem Commit der diff angezeigt wird
+
+    -> WEITERE Parameter von git log: 
+       siehe http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History          
+    > gitk (graphische Benutzeroberfläche)
+      -> öffnet eine GUI mit der Commit-History
+      
+ * Verwalten und Arbeiten mit remote-Repositories
+  
+    > git remote -v
+      -> Anzeige der remote-Repositories
+         Parameter -v: Anzeige mit URL
+         
+      ACHTUNG: origin ist das Repository, von dem man seinen Stand gecloned hat.
+         
+    > git remote add [shortname] [URL]
+      -> Fügt ein Remote-Repository hinzu, während "set-url" die URL eines bereits hinzugefügten Repositories verändert.
+    
+    > git fetch [remote-name]
+    
+    > git remote set-url origin NEW-URL
+      -> Ändert die REMOTE-Url, die z.B. beim push verwendet wird!
+      
+  * git rm -r --cached .idea/
+    git rm -r --cached *.iml
+    
+    -> Entfernt bereits eingecheckte Dateien aus dem Repository
+       --> muss dann noch commitet werden, um endgültig wirksam zu werden!
+                  
+  * git push -u origin master
+               -> commits in remote repository hochladen (pushen)
+    
+   
+
+   
+   
+http://git-scm.com/book/en/Git-Branching-Remote-Branches
+   
+git stash
+git stash list
+git stash pop
+
+git branch -d expEH
+
+git checkout -b localexception origin/expEH
+git pull
+
+https://community.jboss.org/wiki/WhatsTheCauseOfThisExceptionJavalangClassFormatErrorAbsentCode
+
+
+https://mweber@bitbucket.prodyna.com/scm/ca/cocktailmaker-frontend.git
